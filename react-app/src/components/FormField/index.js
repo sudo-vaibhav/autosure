@@ -1,5 +1,4 @@
 import { Field } from 'formik'
-import FeatherIcon from 'feather-icons-react'
 import Card from '../Card'
 const useLabelText = (str) => {
   // adding space between strings

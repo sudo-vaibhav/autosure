@@ -1,12 +1,12 @@
 import AppHeader from '../../../components/AppHeader'
 import vehicle from './vehicle.png'
-const data = {
-  'Involved Insurance Holder': 'Prateek Devashetti',
-  'Insured Vehicle': 'Audi Q7',
-  'Plate No.': 'MH 14 AE 1462',
-}
 
-const AuditHeader = ({ title = '' }) => {
+const AuditHeader = ({ title = '', dataValues }) => {
+  const data = {
+    'Involved Insurance ': dataValues.insuranceNumber,
+    'Insured Vehicle': dataValues.make + ' ' + dataValues.model,
+    'Plate No.': dataValues.numberPlate,
+  }
   return (
     <AppHeader>
       <div className="flex justify-between container mx-auto py-4">

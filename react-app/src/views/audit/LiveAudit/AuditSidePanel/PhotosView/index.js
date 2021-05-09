@@ -1,35 +1,25 @@
-const images = {
-  'Damage Images': [
-    'https://static.toiimg.com/thumb/msid-77991201,imgsize-370800,width-400,resizemode-4/77991201.jpg',
-    'https://static.toiimg.com/thumb/msid-77991201,imgsize-370800,width-400,resizemode-4/77991201.jpg',
-    'https://static.toiimg.com/thumb/msid-77991201,imgsize-370800,width-400,resizemode-4/77991201.jpg',
-    'https://static.toiimg.com/thumb/msid-77991201,imgsize-370800,width-400,resizemode-4/77991201.jpg',
-    'https://static.toiimg.com/thumb/msid-77991201,imgsize-370800,width-400,resizemode-4/77991201.jpg',
-  ],
-  'Previous Images': [
-    'https://5.imimg.com/data5/GO/NV/MY-28812932/maruti-suzuki-wagon-r-white-color-car-500x500.png',
-    'https://5.imimg.com/data5/GO/NV/MY-28812932/maruti-suzuki-wagon-r-white-color-car-500x500.png',
-    'https://5.imimg.com/data5/GO/NV/MY-28812932/maruti-suzuki-wagon-r-white-color-car-500x500.png',
-    'https://5.imimg.com/data5/GO/NV/MY-28812932/maruti-suzuki-wagon-r-white-color-car-500x500.png',
-    'https://5.imimg.com/data5/GO/NV/MY-28812932/maruti-suzuki-wagon-r-white-color-car-500x500.png',
-    'https://5.imimg.com/data5/GO/NV/MY-28812932/maruti-suzuki-wagon-r-white-color-car-500x500.png',
-    'https://5.imimg.com/data5/GO/NV/MY-28812932/maruti-suzuki-wagon-r-white-color-car-500x500.png',
-    'https://5.imimg.com/data5/GO/NV/MY-28812932/maruti-suzuki-wagon-r-white-color-car-500x500.png',
-  ],
-}
-const PhotosView = () => {
+const PhotosView = ({ claimData }) => {
+  const previousImages = Object.keys(claimData.vehicleInfo)
+    .filter((e) => e.includes('-'))
+    .map((e) => claimData.vehicleInfo[e])
+  const damageImages = claimData.damagePics
+
+  const images = {
+    'Damage Images': damageImages,
+    'Previous Images': previousImages,
+  }
   return (
-    <div className="py-3 mx-2">
+    <div className="py-3 mx-2 overflow-y-auto" style={{ maxHeight: 400 }}>
       {Object.keys(images).map((e) => {
         return (
           <>
             <h3 className="text-light-900 uppercase mt-8 mb-2 font-semibold">
               {e}
             </h3>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-6 gap-4 overflow-y-auto">
               {images[e].map((image) => {
                 return (
-                  <div>
+                  <div style={{ zIndex: 1, position: 'relative' }}>
                     <img
                       src={image}
                       className="mx-auto rounded-lg"

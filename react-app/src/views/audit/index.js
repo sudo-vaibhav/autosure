@@ -5,7 +5,7 @@ const Audit = () => {
   const { path } = useRouteMatch()
   return (
     <Switch>
-      <Route path={`${path}/report`}>
+      <Route path={`${path}/report/:claimId`}>
         <Report />
       </Route>
       <Route exact>

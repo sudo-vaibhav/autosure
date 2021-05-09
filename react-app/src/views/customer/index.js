@@ -5,6 +5,8 @@ import MyVehicles from './MyVehicles'
 import NewVehicle from './NewVehicle'
 import BottomNavigator from './BottomNavigator'
 import Claim from './Claim'
+import CustomerMeeting from './CustomerMeeting'
+import Documents from './Documents'
 
 const Customer = () => {
   const { path } = useRouteMatch()
@@ -26,6 +28,12 @@ const Customer = () => {
         </Route>
         <Route path={`${path}/new-claim/:vehicleId`}>
           <Claim />
+        </Route>
+        <Route path={`${path}/meeting/`} exact>
+          <CustomerMeeting />
+        </Route>
+        <Route path={`${path}/documents/`} exact>
+          <Documents />
         </Route>
         <Route path={`${path}/`} exact>
           <Home />

@@ -34,7 +34,7 @@ const VehicleInformation = ({ vehicleId, onClick }) => {
             <div
               data-button="bg-primary-lg"
               className="text-center"
-              onClick={onClick}
+              onClick={() => onClick('vehicleInfo', vehicleInfo)}
             >
               Next
             </div>

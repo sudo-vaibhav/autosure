@@ -20,7 +20,7 @@ const AccidentData = ({ onClick }) => {
             <div
               data-button="btn-primary-lg"
               className="text-center"
-              onClick={onClick}
+              onClick={() => onClick('accidentInfo', values)}
             >
               Next
             </div>

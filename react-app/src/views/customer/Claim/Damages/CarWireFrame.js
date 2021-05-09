@@ -1,10 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import './index.module.css'
 
-const damageMap = ['rightFrontDoor', 'leftFrontDoor', 'rightRearDoor']
+const damageMap = [
+  'rightFrontDoor',
+  'leftFrontDoor',
+  'rightRearDoor',
+  'trunk',
+  'bonnet',
+  'leftRearDoor',
+]
 
-const CarWireFrame = (props) => {
-  const [damages, setDamages] = useState({})
+const CarWireFrame = ({ damages, setDamages }) => {
   useEffect(() => {
     ;[1, 2, 3, 4, 5, 6].map((e) => {
       const smallCircle = document.querySelector(`#smallCircle-${e}`)
@@ -13,10 +19,15 @@ const CarWireFrame = (props) => {
         const previouslySelected = smallCircle.style.opacity === '1'
         smallCircle.style.opacity = previouslySelected ? '0' : '1'
 
-        // if (previouslySelected) {
-        //   const temp = damages
-        //   delete temp[""]
-        // }
+        const temp = damages
+        if (previouslySelected) {
+          delete temp[damageMap[e - 1]]
+        } else {
+          temp[damageMap[e - 1]] = true
+        }
+
+        setDamages(temp)
+        console.log('new damages', temp)
       })
     })
   })
@@ -25,8 +36,8 @@ const CarWireFrame = (props) => {
       width="188"
       height="486"
       viewBox="0 0 188 486"
-      {...props}
       fill="none"
+      className="mx-auto"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g id="car-wireframe">

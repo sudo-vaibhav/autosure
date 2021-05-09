@@ -1,27 +1,34 @@
 import FeatherIcon from 'feather-icons-react'
+import { labelText } from '../../LiveAudit/AuditSidePanel/Checklist'
 
-const DamageCard = ({ i }) => {
+const DamageCard = ({ i, damage, damaged }) => {
   return (
     <div
       key={i}
       className="p-3 shadow-sm border rounded-lg flex justify-between"
     >
-      <div>Winshield has a crack on it</div>
+      <div>{damage}</div>
       <div>
         <FeatherIcon
-          icon={i % 2 === 0 ? 'check' : 'x'}
-          style={{ color: i % 2 === 0 ? 'green' : 'red' }}
+          icon={damaged ? 'check' : 'x'}
+          style={{ color: damaged ? 'green' : 'red' }}
         />
       </div>
     </div>
   )
 }
 
-const Damages = () => {
+const Damages = ({ damages }) => {
   return (
     <div className="grid grid-cols-2 gap-4 my-2">
-      {[0, 1, 2, 3, 4, 4, 4, 5].map((e, i) => {
-        return <DamageCard i={i} />
+      {Object.keys(damages).map((damage, i) => {
+        return (
+          <DamageCard
+            i={i}
+            damage={labelText(damage)}
+            damaged={damages[damage]}
+          />
+        )
       })}
     </div>
   )
